@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
@@ -25,10 +26,14 @@ public class ReadExcelFile {
 	}
 	private suite readSheet(Workbook workbook){
 		Sheet sheet = workbook.getSheet(0);
-		
-		return getTable();
+		return getTable(sheet);
 	}
-	private suite getTable(){
+	private suite getTable(Sheet sheet){
+		for (int i=1;i<sheet.getRows();i++){
+			for (int j=0;j<sheet.getColumns();j++){
+				Cell cell=sheet.getCell(j,i);
+			}// end for j loop
+		}
 		return getTests();
 	}
 	private suite getTests(){
