@@ -2,45 +2,62 @@ package com.kagrana.keyword_driven_framework;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-
-import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
-import com.kagrana.keyword_driven_framework.DTO.parameter;
+import com.kagrana.keyword_driven_framework.DTO._class;
+import com.kagrana.keyword_driven_framework.DTO.classes;
 import com.kagrana.keyword_driven_framework.DTO.suite;
+import com.kagrana.keyword_driven_framework.DTO.test;
 
 public class ReadExcelFile {
 	private String excelFileName;
-	public ReadExcelFile(String excelFileName){
+
+	public ReadExcelFile(String excelFileName) {
 		this.excelFileName = excelFileName;
 	}
-	public suite getSuite() throws BiffException, IOException{
+
+	public suite getSuite() throws BiffException, IOException {
 		File file = new File(this.excelFileName);
 		return readExcelFile(file);
 	}
-	private suite readExcelFile(File file) throws BiffException, IOException{
+
+	private suite readExcelFile(File file) throws BiffException, IOException {
 		return readSheet(Workbook.getWorkbook(file));
 	}
-	private suite readSheet(Workbook workbook){
-		Sheet sheet = workbook.getSheet(0);
-		return getTable(sheet);
+
+	private suite readSheet(Workbook workbook) {
+		suite _suite = getTable(workbook.getSheet(0));
+		workbook.close();
+		return _suite;
 	}
-	private suite getTable(Sheet sheet){
-		for (int i=1;i<sheet.getRows();i++){
-			for (int j=0;j<sheet.getColumns();j++){
-				Cell cell=sheet.getCell(j,i);
-			}// end for j loop
+
+	private suite getTable(Sheet sheet) {
+		String[][] data = new String[sheet.getRows()][sheet.getColumns()];
+		for (int i = 0; i < sheet.getRows(); i++) {
+			for (int j = 0; j < sheet.getColumns(); j++) {
+				data[i][j] = sheet.getCell(j,i).getContents();
+			}
 		}
-		return getTests();
+		return getTests(data, sheet.getRows(), sheet.getColumns());
 	}
-	private suite getTests(){
-		return null;
+
+	private suite getTests(String[][] data, int rows, int column) {
+		suite _suite = new suite();
+		for (int i = 0; i < rows; i++) {
+			if (data[i][1].toUpperCase().equals("Y")
+					|| data[i][1].toUpperCase().equals("YES")) {
+				_class myClass = new _class();
+				myClass.setName(data[i][0]);
+				classes _classes = new classes();
+				_classes.addClass(myClass);
+				test _test = new test();
+				_test.set_classes(_classes);
+				_suite.addTest(_test);
+			}
+		}
+		return _suite;
 	}
-	private List<parameter> getParameters(){
-		return null;
-	}
-	
+
 }

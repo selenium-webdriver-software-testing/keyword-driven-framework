@@ -2,7 +2,7 @@ package com.kagrana.keyword_driven_framework.DTO;
 
 public class test {
 	private classes _classes;
-
+	
 	public classes get_classes() {
 		return _classes;
 	}
