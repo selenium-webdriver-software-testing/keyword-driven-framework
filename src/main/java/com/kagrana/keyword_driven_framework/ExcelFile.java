@@ -11,10 +11,10 @@ import com.kagrana.keyword_driven_framework.DTO.classes;
 import com.kagrana.keyword_driven_framework.DTO.suite;
 import com.kagrana.keyword_driven_framework.DTO.test;
 
-public class ReadExcelFile {
+public class ExcelFile {
 	private String excelFileName;
 
-	public ReadExcelFile(String excelFileName) {
+	public ExcelFile(String excelFileName) {
 		this.excelFileName = excelFileName;
 	}
 

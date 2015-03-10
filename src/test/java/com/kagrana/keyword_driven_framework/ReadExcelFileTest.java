@@ -11,7 +11,7 @@ import com.kagrana.keyword_driven_framework.DTO.test;
 
 public class ReadExcelFileTest {
 	public static void main(String[] args) throws BiffException, IOException{
-		ReadExcelFile file = new ReadExcelFile("data.xls");
+		ExcelFile file = new ExcelFile("data.xls");
 		suite _suite = file.getSuite();
 		List<test> tests = _suite.getTests();
 		for(test _test : tests){

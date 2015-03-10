@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class suite {
-	private List<test> tests;
+	private List<test> test;
 	private List<parameter> parameters;
 
 	public List<test> getTests() {
-		return tests;
+		return test;
 	}
 
 	public void setTests(List<test> tests) {
-		this.tests = tests;
+		this.test = tests;
 	}
 	
 	public void addTest(test _test){
-		if(this.tests == null)
-			this.tests = new ArrayList<test>();
-		this.tests.add(_test);
+		if(this.test == null)
+			this.test = new ArrayList<test>();
+		this.test.add(_test);
 	}
 
 	public List<parameter> getParameters() {
