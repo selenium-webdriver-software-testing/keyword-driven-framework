@@ -15,7 +15,7 @@ public class ReadExcelFileTest {
 		suite _suite = file.getSuite();
 		List<test> tests = _suite.getTests();
 		for(test _test : tests){
-			List<_class> classes = _test.get_classes().get_class();
+			List<_class> classes = _test.getClasses();
 			for(_class myClass : classes)
 				System.out.println(myClass.getName());
 		}

@@ -2,12 +2,12 @@ package com.kagrana.keyword_driven_framework;
 
 import java.io.File;
 import java.io.IOException;
+
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
 import com.kagrana.keyword_driven_framework.DTO._class;
-import com.kagrana.keyword_driven_framework.DTO.classes;
 import com.kagrana.keyword_driven_framework.DTO.suite;
 import com.kagrana.keyword_driven_framework.DTO.test;
 
@@ -37,7 +37,7 @@ public class ExcelFile {
 		String[][] data = new String[sheet.getRows()][sheet.getColumns()];
 		for (int i = 0; i < sheet.getRows(); i++) {
 			for (int j = 0; j < sheet.getColumns(); j++) {
-				data[i][j] = sheet.getCell(j,i).getContents();
+				data[i][j] = sheet.getCell(j, i).getContents();
 			}
 		}
 		return getTests(data, sheet.getRows(), sheet.getColumns());
@@ -50,10 +50,8 @@ public class ExcelFile {
 					|| data[i][1].toUpperCase().equals("YES")) {
 				_class myClass = new _class();
 				myClass.setName(data[i][0]);
-				classes _classes = new classes();
-				_classes.addClass(myClass);
 				test _test = new test();
-				_test.set_classes(_classes);
+				_test.addClass(myClass);
 				_suite.addTest(_test);
 			}
 		}
