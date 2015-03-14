@@ -1,7 +1,9 @@
 package com.kagrana.keyword_driven_framework.DTO;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
+@XStreamAlias("parameter")
 public class parameter {
 	@XStreamAsAttribute
 	private String name;

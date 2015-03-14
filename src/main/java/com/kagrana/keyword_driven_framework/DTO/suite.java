@@ -5,14 +5,14 @@ import java.util.List;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
-import com.thoughtworks.xstream.annotations.XStreamImplicitCollection;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
-@SuppressWarnings("deprecation")
 @XStreamAlias("suite")
-@XStreamImplicitCollection(value = "tests")
 public class suite {
-	private List<test> tests;
+	@XStreamImplicit
 	private List<parameter> parameters;
+	@XStreamImplicit
+	private List<test> tests;
 	@XStreamAsAttribute
 	private String name = "test-suite";
 	@XStreamAsAttribute
@@ -20,9 +20,9 @@ public class suite {
 	@XStreamAlias("thread-count")
 	@XStreamAsAttribute
 	private String thread_count = "5";
-	private int testsCounter;
-	public suite(){
-		this.testsCounter = 0;
+
+	public suite() {
+
 	}
 
 	public List<test> getTests() {
@@ -36,10 +36,10 @@ public class suite {
 	public void addTest(test _test) {
 		if (this.tests == null)
 			this.tests = new ArrayList<test>();
-		if(_test.getName() == null)
-			_test.setName("test"+ ++testsCounter);
-		if(_test.getName().equals(""))
-			_test.setName("test"+ ++testsCounter);	
+		if (_test.getName() == null)
+			_test.setName("test" + (tests.size() + 1));
+		if (_test.getName().equals(""))
+			_test.setName("test" + (tests.size() + 1));
 		this.tests.add(_test);
 	}
 
@@ -51,7 +51,7 @@ public class suite {
 		this.parameters = parameters;
 	}
 
-	public void setParameter(parameter _parameter) {
+	public void addParameter(parameter _parameter) {
 		if (this.parameters == null)
 			this.parameters = new ArrayList<parameter>();
 		this.parameters.add(_parameter);

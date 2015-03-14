@@ -5,15 +5,13 @@ import java.util.List;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
-import com.thoughtworks.xstream.annotations.XStreamImplicitCollection;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
-@SuppressWarnings("deprecation")
 @XStreamAlias("test")
-@XStreamImplicitCollection(value = "parameters")
 public class test {
-
-	private List<_class> classes;
+	@XStreamImplicit
 	private List<parameter> parameters;
+	private List<_class> classes;
 	@XStreamAsAttribute
 	private String name;
 
