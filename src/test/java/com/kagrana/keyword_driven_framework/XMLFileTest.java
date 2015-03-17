@@ -6,7 +6,7 @@ import jxl.read.biff.BiffException;
 
 public class XMLFileTest {
 	public static void main(String[] args) throws BiffException, IOException{
-		ExcelFile xlFile = new ExcelFile("C:\\Users\\mayur\\Dropbox\\mayur-trushar-sagar-share\\data.xls");
+		ExcelFile xlFile = new ExcelFile("data.xls");
 		XMLFile xmlFile = new XMLFile("testng.xml");
 		SuiteConfiguration sp = new SuiteConfiguration(xlFile.getSuite(), "config.properties");
 		sp.set("gridURL", "gridURL");
